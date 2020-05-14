@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
-
 using UnityEngine;
 using UnityEngine.Networking;
-
 using Quiz;
 
 public class QuizRequest : MonoBehaviour
