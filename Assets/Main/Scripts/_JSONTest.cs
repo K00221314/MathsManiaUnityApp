@@ -13,18 +13,18 @@ public class JSONTest
             correctAnswer = "5",
             difficulty = "Easy",
             incorrectAnswers1 = "4",
-            question = "how many lights do you see",
-            type = "Toture",
+            question = "how many apples do you see",
+            type = "3rd class",
         };
 
         var question2 = new Question
         {
-            category = "Strategy",
-            correctAnswer = "5 ships",
+            category = "Maths",
+            correctAnswer = "4",
             difficulty = "Hard",
-            incorrectAnswers1 = "I don't know",
-            question = "What are the federation defense plans for menus corva",
-            type = "Defense",
+            incorrectAnswers1 = "6 5 7",
+            question = "What is the blah blah blah",
+            type = "3rd class",
         };
 
         var question1Json = JsonUtility.ToJson(question1);

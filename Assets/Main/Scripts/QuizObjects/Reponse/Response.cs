@@ -14,6 +14,24 @@ namespace Quiz
         public string question;
         public string type;
 
+
+
+        public List<string> possible_answers
+        {
+            get
+            {
+                var list = new List<string>();
+
+                list.Add(this.correctAnswer);
+
+                if (!String.IsNullOrEmpty(this.incorrectAnswers1))
+                {
+                    list.AddRange(this.incorrectAnswers1.Split(' '));
+                }
+                return list;
+            }
+        }
+
         public List<string> incorrect_answers
         {
             get

@@ -13,7 +13,7 @@ public class QuizRequest : MonoBehaviour
     /*
      * Base webservice url.
      */
-    private readonly string baseUrl = "http://localhost:8080/QuizRestApiDemo/webresources/results";//"https://opentdb.com/api.php?category=9";
+    private readonly string baseUrl = "http://localhost:8080/MathsMania/webresources/rest.results";//"https://opentdb.com/api.php?category=9";
 
     [SerializeField]
     /**
