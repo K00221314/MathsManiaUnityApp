@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using Quiz;
 using System.Collections.Generic;
 
