@@ -8,74 +8,57 @@ public class QuizRequest : MonoBehaviour
 {
 
     [SerializeField]
-    /*
-     * Base webservice url.
-     */
-    private readonly string baseUrl = "http://localhost:8080/MathsMania/webresources/restful.results";
+    
+    private readonly string baseUrl = "http://localhost:8080/MathsManiaJspCrudServer/webresources/restful.results";
 
     [SerializeField]
-    /**
-     * Desired question amount to be returnd;
-     */
+   
     private readonly int questionAmount = 10;
 
-    /**
-     * Stores a success callback to be called later.
-     */
+    
     private Action<Question[]> successCallback = null;
 
-    /**
-     * Stores an error callback to be called later.
-     */
-    private Action<Error> errorCallback = null;
+   
+    //private Action<Error> errorCallback = null;
 
     #region Private Methods
-    /**
-     * Performs a web resquest to retrieve the quiz.
-     */
+    
     private IEnumerator RequestQuiz()
     {
         string url = baseUrl + "?amount=" + questionAmount.ToString();
-        UnityWebRequest req = UnityWebRequest.Get(url);
+        UnityWebRequest request = UnityWebRequest.Get(url);
 
-        yield return req.SendWebRequest();
+        yield return request.SendWebRequest();
 
-        if (req.isNetworkError || req.isHttpError)
+        //if (request.isNetworkError || request.isHttpError)
+        //{
+        //    //OnError(request.responseCode, request.error);
+        //}
+        //else
         {
-            OnError(req.responseCode, req.error);
-        }
-        else
-        {
-            byte[] byteResponse = req.downloadHandler.data;
+            byte[] byteResponse = request.downloadHandler.data;
             Success(ToText(byteResponse));
         }
     }
 
-    /**
-     * Called when web request returns an error.
-     */
-    private void OnError(long statusCode, string errorMessage)
-    {
-        Error error = new Error
-        {
-            statusCode = statusCode,
-            errorMessage = errorMessage
-        };
-        errorCallback(error);
-    }
+  
+    //private void OnError(long statusCode, string errorMessage)
+    //{
+    //    Error error = new Error
+    //    {
+    //        statusCode = statusCode,
+    //        errorMessage = errorMessage
+    //    };
+    //    errorCallback(error);
+    //}
 
-    /**
-     * Called when web request returns a success.
-     */
+    
     private void Success(string jsonArrayText)
     {
         string jsonObject = InsertArrayIntoObject("Items", jsonArrayText);
         //Debug.Log("jsonObject");
         Debug.Log(jsonObject);
-
-        //JSONTest.DoIt();
         Question[] questions = JsonHelper.FromJson<Question>(jsonObject);
-        //        Question[] questions = JsonUtility.FromJson<Question[]>(jsonArrayText);
         successCallback(questions);
     }
 
@@ -86,22 +69,17 @@ public class QuizRequest : MonoBehaviour
     #endregion
 
     #region Public Interface
-    /**
-     * Converts simples binary data byte[] to string.
-     */
+    
     public static string ToText(byte[] bytes)
     {
         return System.Text.Encoding.Default.GetString(bytes);
     }
 
-    /**
-     * Performs the request and assigns success and error callbacks.
-     * Similar to jQuery's Ajax implementation.
-     */
+  
     public void Request(Action<Question[]> successCallback, Action<Error> errorCallback)
     {
         this.successCallback = successCallback;
-        this.errorCallback = errorCallback;
+        //this.errorCallback = errorCallback;
         StartCoroutine(RequestQuiz());
     }
     #endregion

@@ -41,9 +41,6 @@ public class QuestionCanvas : MonoBehaviour
     GameObject panelFinished = null;
     #endregion
 
-    /**
-     * Hides all feedback panels.
-     */
     public void HideFeedback()
     {
         if (successFeedback)
@@ -59,29 +56,20 @@ public class QuestionCanvas : MonoBehaviour
             panelFinished.SetActive(false);
     }
 
-    /**
-     * Displays Success feedback panel.
-     */
+  
     public void Success()
     {
         if (successFeedback)
             successFeedback.SetActive(true);
     }
 
-    /**
-     * Displays Failure feedback panel.
-     */
+    
     public void Failure()
     {
         if (failureFeedback)
             failureFeedback.SetActive(true);
     }
 
-
-    /// <summary>
-    /// Sets score display value.
-    /// </summary>
-    /// <param name="score"></param>
     public void SetScore(int score)
     {
         if (textScore)
@@ -89,9 +77,6 @@ public class QuestionCanvas : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Displays Finished feedback panel.
-    /// </summary>
     public void FinishedQuiz()
     {
         if (panelFinished)
@@ -109,9 +94,6 @@ public class QuestionCanvas : MonoBehaviour
 
     }
 
-    /**
-     * Displays a new question on the screen.
-     */
     public void SetQuestion(Question question, int questionNumber)
     {
         ButtonOption[] buttonOptions =
@@ -175,14 +157,10 @@ public class QuestionCanvas : MonoBehaviour
             buttonOption.isCorrect = order[buttonNumber] == correctAnswerIndex;
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="arrray"></param>
-    /// <param name="swapTimes">The number of swaps to preporm on the arry</param>
+   
     public void RandominiseArrayContents(int[] arrray, int swapTimes)
     {
-        System.Random random = new System.Random(Guid.NewGuid().GetHashCode());//https://stackoverflow.com/questions/1785744/how-do-i-seed-a-random-class-to-avoid-getting-duplicate-random-values
+        System.Random random = new System.Random(Guid.NewGuid().GetHashCode());
 
         for (int swapCount = 0; swapCount < swapTimes; swapCount++)
         {
@@ -195,12 +173,6 @@ public class QuestionCanvas : MonoBehaviour
             }
         }
     }
-    /// <summary>
-    /// Swaps the contents of two locations in an array
-    /// </summary>
-    /// <param name="arrray"></param>
-    /// <param name="lhsIndex"></param>
-    /// <param name="rhsIndex"></param>
     public void SwapArrayElements(int[] arrray, int lhsIndex, int rhsIndex)
     {
         int swapSapce = arrray[lhsIndex];

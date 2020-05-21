@@ -11,9 +11,7 @@ public class QuizManager : MonoBehaviour
     #endregion
 
     #region Serialized Fields
-    /**
-     * Receives the api.
-     */
+    
     [SerializeField]
     private QuizRequest api = null;
 
@@ -28,10 +26,7 @@ public class QuizManager : MonoBehaviour
     #endregion
 
     #region Public Properties
-    /**
-     * Singleton getter.
-     * Readonly.
-     */
+   
     public static QuizManager Instance
     {
         get
@@ -40,9 +35,7 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    /**
-     * Tells if the current question is the last.
-     */
+    
     public bool IsLastQuestion
     {
         get
@@ -55,14 +48,11 @@ public class QuizManager : MonoBehaviour
 
     void Start()
     {
-        if (api) // Checks if the api is present.
+        if (api) 
         {
-            /**
-             * Request quize's questions.
-             */
             api.Request(
                 new Action<Question[]>((Question[] response) =>
-                { // Success callback.
+                { 
 
                     questions = new List<Question>(response);
 
@@ -84,22 +74,18 @@ public class QuizManager : MonoBehaviour
         _instance = this;
     }
 
-    /**
-     * Renders a question on the screen.
-     */
+   
     public void RenderQuestion()
     {
-        Question q = questions[currentQuestion]; // Gets the current question.
+        Question q = questions[currentQuestion]; 
 
         if (canvas)
         {
-            canvas.SetQuestion(q, currentQuestion); // Assigns correct question.
+            canvas.SetQuestion(q, currentQuestion); 
         }
     }
 
-    /**
-     * Requests next question to be rendered on screen.
-     */
+    
     public void NextQuestion()
     {
         if (currentQuestion < questions.Count)
@@ -109,27 +95,21 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    /**
-     * Requests Finished Quiz panel to be displayed.
-     */
+    
     public void FinishedQuiz()
     {
         if (canvas)
             canvas.FinishedQuiz(score);
     }
 
-    /**
-     * Requests all feedback panel to be hidden.
-     */
+    
     public void HideFeedback()
     {
         if (canvas)
             canvas.HideFeedback();
     }
 
-    /**
-     * Responds current question with selected option.
-     */
+   
     public void Respond(ButtonOption selectedOption)
     {
         if (selectedOption.isCorrect)
@@ -142,9 +122,7 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    /**
-     * Succeed on question.
-     */
+    
     public void Success()
     {
         Debug.Log("Correct!");
@@ -154,9 +132,7 @@ public class QuizManager : MonoBehaviour
         canvas.SetScore(score);
     }
 
-    /**
-     * Fails on question.
-     */
+   
     public void Failure()
     {
         Debug.Log("Wrong!");
@@ -164,17 +140,13 @@ public class QuizManager : MonoBehaviour
 
     }
 
-    /**
-     * Scores up. Increse the acumulated value by 10.
-     */
+    
     public void ScoreUp()
     {
         score += 10;
     }
 
-    /**
-     * Strats a new try.
-     */
+   
     public void Restart()
     {
         score = 0;

@@ -50,7 +50,7 @@ namespace Quiz
         }
     }
 
-    //TODO: RD : refence source
+   
     public static class JsonHelper
     {
         public static T[] FromJson<T>(string json)
